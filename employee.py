@@ -28,25 +28,25 @@ class Employee:
         return total
 
     def __str__(self):
-        final_string = self.name + " works on a "
+        out = self.name + " works on a "
         if self.hours:
-            final_string += "contract of " + str(self.hours) + " hours at " + str(self.salary) + "/hour"
+            out += "contract of " + str(self.hours) + " hours at " + str(self.salary) + "/hour"
 
         else:
-            final_string += "monthly salary of " + str(self.salary)
+            out += "monthly salary of " + str(self.salary)
 
         if self.commissions > 0:
-            final_string += " and receives a commission for " + str(self.commissions) + " contract(s) at " + str(
+            out += " and receives a commission for " + str(self.commissions) + " contract(s) at " + str(
                 self.commission_pay) + "/contract. Their total pay is " + str(self.get_pay()) + "."
 
         elif self.bonus_commission:
-            final_string += " and receives a bonus commission of " + str(
+            out += " and receives a bonus commission of " + str(
                 self.bonus_commission) + ". Their total pay is " + str(self.get_pay()) + "."
 
         else:
-            final_string += ". Their total pay is " + str(self.get_pay()) + "."
+            out += ". Their total pay is " + str(self.get_pay()) + "."
 
-        return final_string
+        return out
 
 
 billie = Employee("Billie", 0, 0, 0, 4000)
