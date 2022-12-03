@@ -1,31 +1,57 @@
 """Employee pay calculator."""
 """ENTER YOUR SOLUTION HERE!"""
 
+
 class Employee:
-    def __init__(self, name):
+    def __init__(self, name, commissions, commission_pay, bonus_commission, salary, hours=0):
         self.name = name
+        self.commissions = commissions
+        self.commission_pay = commission_pay
+        self.bonus_commission = bonus_commission
+        self.salary = salary
+        self.hours = hours
 
     def get_pay(self):
-        pass
+        total = 0
+
+        if self.hours == 0:
+            total += self.salary
+        else:
+            total += (self.salary * self.hours)
+
+        if self.commissions:
+            total += (self.commissions * self.commission_pay)
+
+        elif self.bonus_commission:
+            total += self.bonus_commission
+
+        return total
 
     def __str__(self):
-        return self.name
+        final_string = self.name + " works on a "
+        if self.hours:
+            final_string += "contract of " + str(self.hours) + " hours at " + str(self.salary) + "/hour"
+
+        else:
+            final_string += "monthly salary of " + str(self.salary)
+
+        if self.commissions > 0:
+            final_string += " and receives a commission for " + str(self.commissions) + " contract(s) at " + str(
+                self.commission_pay) + "/contract. Their total pay is " + str(self.get_pay()) + "."
+
+        elif self.bonus_commission:
+            final_string += " and receives a bonus commission of " + str(
+                self.bonus_commission) + ". Their total pay is " + str(self.get_pay()) + "."
+
+        else:
+            final_string += ". Their total pay is " + str(self.get_pay()) + "."
+
+        return final_string
 
 
-# Billie works on a monthly salary of 4000.  Their total pay is 4000.
-billie = Employee('Billie')
-
-# Charlie works on a contract of 100 hours at 25/hour.  Their total pay is 2500.
-charlie = Employee('Charlie')
-
-# Renee works on a monthly salary of 3000 and receives a commission for 4 contract(s) at 200/contract.  Their total pay is 3800.
-renee = Employee('Renee')
-
-# Jan works on a contract of 150 hours at 25/hour and receives a commission for 3 contract(s) at 220/contract.  Their total pay is 4410.
-jan = Employee('Jan')
-
-# Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
-robbie = Employee('Robbie')
-
-# Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
-ariel = Employee('Ariel')
+billie = Employee("Billie", 0, 0, 0, 4000)
+charlie = Employee("Charlie", 0, 0, 0, 25, 100)
+renee = Employee("Renee", 4, 200, 0, 3000)
+jan = Employee("Jan", 3, 220, 0, 25, 150)
+robbie = Employee("Robbie", 0, 0, 1500, 2000)
+ariel = Employee("Ariel", 0, 0, 600, 30, 120)
